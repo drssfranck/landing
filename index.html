@@ -4,12 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NadiShop – Robes de soirée (Paris)</title>
-  <meta name="description" content="NadiShop : robes de soirée élégantes. La robe qui te fait entendre : ‘tu es magnifique’. Achat direct, livraison France, paiement sécurisé." />
+  <meta name="description" content="NadiShop : La robe qui te fait entendre : ‘tu es magnifique’. Achat direct, livraison France, paiement sécurisé." />
 
   <style>
-    /* =========================
-       NadiShop – Design blanc + luxe minimal
-       ========================= */
     :root{
       --bg:#ffffff;
       --bg-soft:#f7f8fb;
@@ -26,7 +23,6 @@
 
       --r:18px;
       --r-lg:28px;
-
       --container:1120px;
 
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -51,9 +47,7 @@
       margin-inline:auto;
     }
 
-    /* =========================
-       Topbar
-       ========================= */
+    /* Topbar */
     .topbar{
       position:sticky; top:0; z-index:50;
       background:rgba(255,255,255,.86);
@@ -68,26 +62,14 @@
       padding:12px 0;
     }
 
-    /* Brand + Logo */
     .brand{
       display:flex; align-items:center; gap:12px;
       font-weight:950; letter-spacing:.2px;
     }
-    .brand-name{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-    }
-    .brand-name strong{
-      font-size:14px;
-      letter-spacing:.4px;
-    }
-    .brand-name span{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:800;
-      margin-top:2px;
-    }
+    .brand-name{display:flex; flex-direction:column; line-height:1.05}
+    .brand-name strong{font-size:14px; letter-spacing:.4px}
+    .brand-name span{font-size:12px; color:var(--muted); font-weight:800; margin-top:2px}
+
     .logo{
       width:40px; height:40px;
       border-radius:14px;
@@ -117,27 +99,17 @@
       transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
       white-space:nowrap;
     }
-    .cta-primary{
-      background:var(--accent2);
-      color:#fff;
-      box-shadow:var(--shadow-soft);
-    }
+    .cta-primary{background:var(--accent2); color:#fff; box-shadow:var(--shadow-soft)}
     .cta-primary:hover{transform:translateY(-1px)}
-    .cta-secondary{
-      background:#fff;
-      border-color:var(--line);
-      color:var(--text);
-    }
+    .cta-secondary{background:#fff; border-color:var(--line); color:var(--text)}
     .cta-secondary:hover{box-shadow:var(--shadow-soft); transform:translateY(-1px)}
 
-    /* =========================
-       Hero (AIDA)
-       ========================= */
+    /* Hero */
     header.hero{padding:42px 0 28px}
     .hero-grid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
-      gap:26px;
+      gap:22px;
       align-items:stretch;
     }
 
@@ -151,10 +123,7 @@
       width:fit-content;
       color:#2f2a22;
     }
-    .kicker-dot{
-      width:8px; height:8px; border-radius:50%;
-      background:var(--accent);
-    }
+    .kicker-dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
 
     h1{
       margin:12px 0 10px;
@@ -165,21 +134,16 @@
       line-height:1.02;
     }
     .lead{
-      margin:0 0 18px;
+      margin:0 0 16px;
       color:var(--muted);
       font-size:16px;
       max-width:60ch;
       font-weight:800;
     }
 
-    .hero-actions{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-top:12px;
-    }
-    .trust-row{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:14px;
-    }
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+
+    .trust-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:9px 12px;
@@ -192,28 +156,34 @@
     }
     .pill svg{width:16px; height:16px}
 
-    .hero-card{
+    /* HERO VISUALS (1 grande + 3 petites) */
+    .hero-visual{
       border:1px solid var(--line);
       border-radius:var(--r-lg);
-      overflow:hidden;
       background:#fff;
       box-shadow:var(--shadow);
+      overflow:hidden;
       display:flex;
       flex-direction:column;
+      gap:0;
     }
-    .hero-image{
+    .hero-main{
       position:relative;
-      aspect-ratio: 16/12;
+      aspect-ratio: 16/11;
       background:#eee;
     }
-    .hero-image img{
-      width:100%;
-      height:100%;
+    .hero-main img{
+      width:100%; height:100%;
       object-fit:cover;
+      object-position: 50% 20%;
+      filter:saturate(1.03) contrast(1.02);
+      transform: scale(1.01);
     }
-    .hero-overlay{
+    .hero-main::after{
+      content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.62) 100%);
+      pointer-events:none;
     }
     .hero-caption{
       position:absolute;
@@ -223,6 +193,7 @@
       justify-content:space-between;
       align-items:flex-end;
       gap:10px;
+      z-index:1;
     }
     .hero-caption strong{display:block; font-size:15px; letter-spacing:.2px}
     .hero-caption span{font-size:13px; opacity:.9}
@@ -236,26 +207,41 @@
       white-space:nowrap;
       backdrop-filter: blur(8px);
     }
-    .hero-foot{
-      padding:14px 16px 16px;
-      border-top:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-    }
-    .stars{
-      display:flex; align-items:center; gap:6px;
-      font-weight:950;
-      font-size:13px;
-      color:#2b2e38;
-    }
-    .stars small{color:var(--muted); font-weight:900}
-    .stars svg{width:16px; height:16px; fill:#f5c451}
 
-    /* =========================
-       Sections
-       ========================= */
+    .hero-mini{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:1px;
+      border-top:1px solid var(--line);
+      background:var(--line);
+    }
+    .mini{
+      position:relative;
+      aspect-ratio: 1 / 1;
+      background:#eee;
+      overflow:hidden;
+    }
+    .mini img{
+      width:100%; height:100%;
+      object-fit:cover;
+      object-position: 50% 20%;
+      filter:saturate(1.02) contrast(1.02);
+      transition: transform .25s ease;
+    }
+    .mini:hover img{transform: scale(1.04)}
+    .mini-badge{
+      position:absolute; left:10px; bottom:10px;
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      padding:6px 9px;
+      border-radius:999px;
+      font-weight:950;
+      font-size:12px;
+      color:#2b2e38;
+      box-shadow:var(--shadow-soft);
+    }
+
+    /* Sections */
     section{padding:46px 0}
     .section-title{
       font-family:var(--serif);
@@ -294,12 +280,10 @@
     }
     .icon svg{width:18px; height:18px}
 
-    /* =========================
-       Produits (achat direct)
-       ========================= */
+    /* Produits */
     .products{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap:14px;
     }
     .product{
@@ -310,17 +294,18 @@
       box-shadow:var(--shadow-soft);
       display:flex;
       flex-direction:column;
-      min-height: 430px;
+      min-height: 460px;
     }
     .product-media{
       position:relative;
-      aspect-ratio: 16 / 12;
-      background: #eaeaf0;
+      aspect-ratio: 3 / 4; /* parfait pour robes */
+      background:#eaeaf0;
     }
     .product-media img{
       width:100%; height:100%;
       object-fit:cover;
-      filter:saturate(1.03) contrast(1.02);
+      object-position: 50% 20%;
+      filter:saturate(1.02) contrast(1.02);
     }
     .badge{
       position:absolute;
@@ -341,54 +326,27 @@
       gap:10px;
       flex:1;
     }
-    .product-title{
-      font-weight:1000;
-      letter-spacing:-.1px;
-      font-size:16px;
-      margin:0;
-    }
-    .product-desc{
-      margin:0;
-      color:var(--muted);
-      font-weight:850;
-      font-size:14px;
-    }
+    .product-title{font-weight:1000; letter-spacing:-.1px; font-size:16px; margin:0}
+    .product-desc{margin:0; color:var(--muted); font-weight:850; font-size:14px}
     .product-meta{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
       margin-top:4px;
     }
-    .price{
-      font-weight:1100;
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .sizes{
-      display:flex; gap:8px; flex-wrap:wrap;
-    }
+    .price{font-weight:1100; font-size:18px; letter-spacing:-.2px}
+    .sizes{display:flex; gap:8px; flex-wrap:wrap}
     .size{
-      font-size:12px;
-      font-weight:950;
+      font-size:12px; font-weight:950;
       padding:6px 9px;
       border-radius:999px;
       border:1px solid var(--line);
       background:var(--bg-soft);
       color:#2b2e38;
     }
-    .product-actions{
-      margin-top:auto;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .product-actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
     .product-actions .cta{flex:1}
     .product-actions .cta-secondary{flex:.9}
 
-    /* =========================
-       Checkout (conversion)
-       ========================= */
+    /* Checkout */
     .checkout-wrap{
       background:var(--bg-soft);
       border-top:1px solid var(--line);
@@ -432,13 +390,7 @@
       padding:16px;
       box-shadow:var(--shadow-soft);
     }
-    label{
-      display:block;
-      font-size:13px;
-      font-weight:1000;
-      color:#2b2e38;
-      margin:0 0 6px;
-    }
+    label{display:block; font-size:13px; font-weight:1000; color:#2b2e38; margin:0 0 6px}
     input, select{
       width:100%;
       padding:12px 12px;
@@ -454,25 +406,11 @@
       border-color: rgba(176,141,87,.55);
       box-shadow: 0 0 0 4px rgba(176,141,87,.18);
     }
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-bottom:12px;
-    }
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:12px}
     .row.single{grid-template-columns: 1fr}
-    .hint{
-      display:block;
-      color:var(--muted);
-      font-size:12px;
-      font-weight:850;
-      margin-top:8px;
-      line-height:1.35;
-    }
+    .hint{display:block; color:var(--muted); font-size:12px; font-weight:850; margin-top:8px; line-height:1.35}
 
-    /* =========================
-       FAQ
-       ========================= */
+    /* FAQ */
     details{
       border:1px solid var(--line);
       border-radius:16px;
@@ -481,18 +419,11 @@
       box-shadow:var(--shadow-soft);
     }
     details + details{margin-top:10px}
-    summary{
-      cursor:pointer;
-      font-weight:1100;
-      color:#2b2e38;
-      list-style:none;
-    }
+    summary{cursor:pointer; font-weight:1100; color:#2b2e38; list-style:none}
     summary::-webkit-details-marker{display:none}
     details p{margin:10px 0 0; color:var(--muted); font-weight:850; font-size:14px}
 
-    /* =========================
-       Footer
-       ========================= */
+    /* Footer */
     footer{
       border-top:1px solid var(--line);
       padding:26px 0 34px;
@@ -508,20 +439,22 @@
     }
     .fineprint{max-width:78ch; line-height:1.35}
 
-    /* =========================
-       Responsive
-       ========================= */
+    /* Responsive */
+    @media (max-width: 1100px){
+      .products{grid-template-columns: repeat(2, 1fr)}
+    }
     @media (max-width: 980px){
       .nav{display:none}
       .hero-grid{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
-      .products{grid-template-columns:1fr}
       .checkout-grid{grid-template-columns:1fr}
-      .hero-image{aspect-ratio:16/10}
+      .hero-main{aspect-ratio:16/10}
     }
     @media (max-width: 520px){
       .row{grid-template-columns:1fr}
       .kv{grid-template-columns:1fr}
+      .products{grid-template-columns:1fr}
+      .hero-mini{grid-template-columns: 1fr 1fr 1fr}
     }
   </style>
 </head>
@@ -533,10 +466,9 @@
     <div class="container">
       <div class="topbar-inner">
 
-        <!-- LOGO + NOM -->
         <a class="brand" href="#" aria-label="Accueil NadiShop">
           <div class="logo" aria-hidden="true">
-            <!-- Logo vectoriel : monogramme N + pétale (féminin / luxe) -->
+            <!-- Logo vectoriel -->
             <svg viewBox="0 0 64 64" role="img" aria-label="Logo NadiShop">
               <defs>
                 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -566,11 +498,12 @@
         <a class="cta cta-primary" href="#produits" aria-label="Voir les robes">
           Voir les robes <span aria-hidden="true">→</span>
         </a>
+
       </div>
     </div>
   </div>
 
-  <!-- HERO (AIDA : Attention / Intérêt / Désir) -->
+  <!-- HERO -->
   <header class="hero">
     <div class="container">
       <div class="hero-grid">
@@ -581,13 +514,11 @@
             Paris • Soirée entre copines • Achat direct
           </div>
 
-          <!-- SLOGAN -->
           <h1>La robe qui te fait entendre : “tu es magnifique”.</h1>
 
-          <!-- Persona / contexte -->
           <p class="lead">
-            Pour les femmes de Paris qui veulent une vibe mannequin le temps d’une soirée :
-            coupes flatteuses, élégance premium, et un look qui attire les compliments.
+            Pour une vibe mannequin, le temps d’une soirée : coupes flatteuses, élégance premium,
+            et un look qui attire les compliments dès que tu arrives.
           </p>
 
           <div class="hero-actions">
@@ -597,7 +528,7 @@
 
           <div class="trust-row" role="list" aria-label="Réassurance">
             <div class="pill" role="listitem">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h11v10H3V7Z" stroke="currentColor" stroke-width="2"/><path d="M14 10h4l3 3v4h-7v-7Z" stroke="currentColor" stroke-width="2"/><path d="M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2"/><path d="M17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h11v10H3V7Z" stroke="currentColor" stroke-width="2"/><path d="M14 10h4l3 3v4h-7v-7Z" stroke="currentColor" stroke-width="2"/></svg>
               Livraison France
             </div>
             <div class="pill" role="listitem">
@@ -609,31 +540,41 @@
               Paiement sécurisé
             </div>
             <div class="pill" role="listitem">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4" stroke="currentColor" stroke-width="2"/><path d="M7 17l-2-2m5 0-2-2m5 0-2-2m5 0-2-2" stroke="currentColor" stroke-width="2"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4" stroke="currentColor" stroke-width="2"/></svg>
               Guide tailles
             </div>
           </div>
         </div>
 
-        <!-- Visuel temporaire (images libres) -->
-        <aside class="hero-card" aria-label="Aperçu NadiShop">
-          <div class="hero-image">
-            <img alt="Robe de soirée élégante (image d’inspiration)" src="https://images.unsplash.com/photo-1520975869011-0a10b2c6e50c?auto=format&fit=crop&w=1600&q=80" />
-            <div class="hero-overlay" aria-hidden="true"></div>
+        <!-- VISUELS (rangés) -->
+        <aside class="hero-visual" aria-label="Aperçu collection NadiShop">
+          <!-- Grande image = la plus “impact” : ROUGE -->
+          <div class="hero-main">
+            <!-- ⚠️ Mets tes images dans /images et garde ces noms -->
+            <img src="images/robe-rouge.png" alt="Robe rouge satinée – NadiShop" loading="eager" />
             <div class="hero-caption">
               <div>
-                <strong>NadiShop – Look “mannequin”</strong>
-                <span>Soirée • Compliments garantis</span>
+                <strong>Best-seller : Satin Rouge</strong>
+                <span>Effet “wow” immédiat</span>
               </div>
-              <div class="price-tag">Prix moyen ~ 200€</div>
+              <div class="price-tag">~ 200€</div>
             </div>
           </div>
-          <div class="hero-foot">
-            <div class="stars">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              4,8/5 <small>(avis)</small>
-            </div>
-            <a class="cta cta-secondary" href="#produits">Voir les best-sellers</a>
+
+          <!-- 3 mini = teintes qui complètent (rose, vert, noir) -->
+          <div class="hero-mini" aria-label="Aperçu autres couleurs">
+            <a class="mini" href="#produits" aria-label="Voir robe rose">
+              <img src="images/robe-rose.png" alt="Robe rose satinée – NadiShop" loading="lazy" />
+              <span class="mini-badge">Rose</span>
+            </a>
+            <a class="mini" href="#produits" aria-label="Voir robe verte">
+              <img src="images/robe-verte.png" alt="Robe verte – NadiShop" loading="lazy" />
+              <span class="mini-badge">Vert</span>
+            </a>
+            <a class="mini" href="#produits" aria-label="Voir robe noire">
+              <img src="images/robe-noire.png" alt="Robe noire – NadiShop" loading="lazy" />
+              <span class="mini-badge">Noir</span>
+            </a>
           </div>
         </aside>
 
@@ -641,35 +582,33 @@
     </div>
   </header>
 
-  <!-- RÉASSURANCE (Intérêt) -->
+  <!-- RÉASSURANCE -->
   <section id="reassurance">
     <div class="container">
       <h2 class="section-title">Une robe qui te met en lumière, sans stress.</h2>
       <p class="section-sub">
         On enlève les doutes avant l’achat : délai, retours, paiement et taille.
-        (À remplacer par tes conditions exactes quand tu les as.)
+        (À remplacer par tes conditions exactes.)
       </p>
 
       <div class="grid-3">
         <div class="card">
           <div class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v10H3V7Z" stroke="currentColor" stroke-width="2"/><path d="M14 10h4l3 3v4h-7v-7Z" stroke="currentColor" stroke-width="2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v10H3V7Z" stroke="currentColor" stroke-width="2"/></svg>
           </div>
           <h3>Livraison France</h3>
-          <p>Expédition + suivi. Une promesse claire rassure (ex : 48–72h).</p>
+          <p>Expédition + suivi. Ajoute un délai clair (ex : 48–72h) quand tu l’as.</p>
         </div>
-
         <div class="card">
           <div class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2"/><path d="M20 4v6h-6" stroke="currentColor" stroke-width="2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2"/></svg>
           </div>
           <h3>Retours simples</h3>
-          <p>Échange/remboursement : on garde l’achat “sans risque”.</p>
+          <p>Échange/remboursement : achat plus serein, moins d’hésitation.</p>
         </div>
-
         <div class="card">
           <div class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="2"/><path d="M6 11h12v10H6V11Z" stroke="currentColor" stroke-width="2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="2"/></svg>
           </div>
           <h3>Paiement sécurisé</h3>
           <p>CB / paiement sécurisé. Simple, rapide, fiable.</p>
@@ -678,78 +617,88 @@
     </div>
   </section>
 
-  <!-- PRODUITS (Désir → Action) -->
+  <!-- PRODUITS (tes 4 photos) -->
   <section id="produits">
     <div class="container">
-      <h2 class="section-title">Tes robes “compliments assurés” autour de 200€.</h2>
+      <h2 class="section-title">Choisis ta robe. Prépare-toi aux compliments.</h2>
       <p class="section-sub">
-        Images temporaires (inspiration). Remplace-les par tes photos produits dès que tu peux.
+        Sélection courte : 4 styles, 4 vibes. (Tu peux remplacer les noms/prix plus tard.)
       </p>
 
       <div class="products">
 
-        <article class="product" aria-label="Robe Satin Noir">
+        <article class="product" aria-label="Robe satin rouge">
           <div class="product-media">
             <span class="badge">Best-seller</span>
-            <img alt="Robe de soirée satin noir (inspiration)" src="https://images.unsplash.com/photo-1520975910006-7ee6470d8f8c?auto=format&fit=crop&w=1600&q=80" />
+            <img src="images/robe-rouge.png" alt="Robe satin rouge – NadiShop" loading="lazy" />
           </div>
           <div class="product-body">
-            <h3 class="product-title">Robe Satin Noir – “Éclipse”</h3>
-            <p class="product-desc">Silhouette sculptée, effet chic immédiat. Parfaite pour sortir à Paris.</p>
-            <div class="product-meta">
-              <div class="price">199€</div>
-              <div class="sizes">
-                <span class="size">34–46</span>
-                <span class="size">Noir</span>
-              </div>
-            </div>
-            <div class="product-actions">
-              <a class="cta cta-primary" href="#checkout">Je la veux →</a>
-              <a class="cta cta-secondary" href="#faq">Détails</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product" aria-label="Robe Brillante Argent">
-          <div class="product-media">
-            <span class="badge">Photo-ready</span>
-            <img alt="Robe de soirée brillante (inspiration)" src="https://images.unsplash.com/photo-1520975705182-9d2cbd4f3d64?auto=format&fit=crop&w=1600&q=80" />
-          </div>
-          <div class="product-body">
-            <h3 class="product-title">Robe Brillante – “Étoile”</h3>
-            <p class="product-desc">Elle capte la lumière. Tu arrives, et on te remarque.</p>
+            <h3 class="product-title">Satin Rouge — “Éclat”</h3>
+            <p class="product-desc">Silhouette sculptée, présence immédiate. Parfaite pour une entrée remarquée.</p>
             <div class="product-meta">
               <div class="price">209€</div>
-              <div class="sizes">
-                <span class="size">36–44</span>
-                <span class="size">Argent</span>
-              </div>
+              <div class="sizes"><span class="size">34–46</span><span class="size">Rouge</span></div>
             </div>
             <div class="product-actions">
               <a class="cta cta-primary" href="#checkout">Je la veux →</a>
-              <a class="cta cta-secondary" href="#faq">Détails</a>
+              <a class="cta cta-secondary" href="#faq">FAQ</a>
             </div>
           </div>
         </article>
 
-        <article class="product" aria-label="Robe Chic Minimal">
+        <article class="product" aria-label="Robe satin rose">
           <div class="product-media">
-            <span class="badge">Intemporel</span>
-            <img alt="Robe de soirée chic minimal (inspiration)" src="https://images.unsplash.com/photo-1520975693418-35a8d6fb1e8d?auto=format&fit=crop&w=1600&q=80" />
+            <span class="badge">Romantique</span>
+            <img src="images/robe-rose.png" alt="Robe satin rose – NadiShop" loading="lazy" />
           </div>
           <div class="product-body">
-            <h3 class="product-title">Robe Chic – “Ligne Pure”</h3>
-            <p class="product-desc">Minimal, luxe, et ultra mannequin. Une valeur sûre.</p>
+            <h3 class="product-title">Satin Rose — “Muse”</h3>
+            <p class="product-desc">Féminin, chic, photo-ready. Idéal pour une soirée entre copines.</p>
             <div class="product-meta">
-              <div class="price">189€</div>
-              <div class="sizes">
-                <span class="size">34–46</span>
-                <span class="size">Crème</span>
-              </div>
+              <div class="price">199€</div>
+              <div class="sizes"><span class="size">34–44</span><span class="size">Rose</span></div>
             </div>
             <div class="product-actions">
               <a class="cta cta-primary" href="#checkout">Je la veux →</a>
-              <a class="cta cta-secondary" href="#faq">Détails</a>
+              <a class="cta cta-secondary" href="#faq">FAQ</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" aria-label="Robe verte">
+          <div class="product-media">
+            <span class="badge">Allure mannequin</span>
+            <img src="images/robe-verte.png" alt="Robe verte – NadiShop" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Vert Sauge — “Signature”</h3>
+            <p class="product-desc">Élégance moderne + détail raffiné. Effet runway, sans effort.</p>
+            <div class="product-meta">
+              <div class="price">205€</div>
+              <div class="sizes"><span class="size">34–46</span><span class="size">Vert</span></div>
+            </div>
+            <div class="product-actions">
+              <a class="cta cta-primary" href="#checkout">Je la veux →</a>
+              <a class="cta cta-secondary" href="#faq">FAQ</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" aria-label="Robe noire">
+          <div class="product-media">
+            <span class="badge">Indémodable</span>
+            <img src="images/robe-noire.png" alt="Robe noire – NadiShop" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Noir Classique — “Iconic”</h3>
+            <p class="product-desc">Minimal, élégant, ultra flatteur. La valeur sûre qui fait toujours son effet.</p>
+            <div class="product-meta">
+              <div class="price">189€</div>
+              <div class="sizes"><span class="size">34–46</span><span class="size">Noir</span></div>
+            </div>
+            <div class="product-actions">
+              <a class="cta cta-primary" href="#checkout">Je la veux →</a>
+              <a class="cta cta-secondary" href="#faq">FAQ</a>
             </div>
           </div>
         </article>
@@ -758,25 +707,24 @@
     </div>
   </section>
 
-  <!-- CHECKOUT (Action) -->
+  <!-- CHECKOUT -->
   <section id="checkout" class="checkout-wrap">
     <div class="container">
       <h2 class="section-title">Finaliser ta commande.</h2>
       <p class="section-sub">
-        Sans backend, le bouton “Payer” envoie vers <code>/checkout</code>. Branche-le ensuite sur Shopify / WooCommerce / Stripe Checkout.
+        Le bouton “Payer” pointe vers <code>/checkout</code>. Branche-le ensuite sur ta page de paiement (Shopify / Stripe / etc.).
       </p>
 
       <div class="checkout-grid">
-
         <div class="panel">
           <h3>Récapitulatif NadiShop</h3>
-          <p>Ta robe, ta taille, ton adresse… et c’est parti pour la soirée.</p>
+          <p>Ta robe, ta taille, ton adresse… et tu es prête.</p>
 
           <div class="kv">
-            <div class="item"><strong>Livraison</strong><span>France (à préciser)</span></div>
+            <div class="item"><strong>Livraison</strong><span>France</span></div>
             <div class="item"><strong>Retours</strong><span>Simple (à préciser)</span></div>
             <div class="item"><strong>Paiement</strong><span>Sécurisé</span></div>
-            <div class="item"><strong>Prix moyen</strong><span>~ 200€</span></div>
+            <div class="item"><strong>Prix</strong><span>~ 200€</span></div>
           </div>
 
           <div style="margin-top:14px">
@@ -790,9 +738,10 @@
               <label for="modele">Modèle</label>
               <select id="modele" name="modele" required>
                 <option value="" disabled selected>Choisir…</option>
-                <option>Éclipse (Satin Noir) – 199€</option>
-                <option>Étoile (Brillant Argent) – 209€</option>
-                <option>Ligne Pure (Chic) – 189€</option>
+                <option>Satin Rouge — Éclat (209€)</option>
+                <option>Satin Rose — Muse (199€)</option>
+                <option>Vert Sauge — Signature (205€)</option>
+                <option>Noir Classique — Iconic (189€)</option>
               </select>
             </div>
             <div>
@@ -825,7 +774,7 @@
 
           <div class="row single">
             <div>
-              <label for="adresse">Adresse de livraison (France)</label>
+              <label for="adresse">Adresse de livraison</label>
               <input id="adresse" name="adresse" type="text" placeholder="N° + rue, code postal, ville" required />
             </div>
           </div>
@@ -835,38 +784,35 @@
           </button>
 
           <span class="hint">
-            Remplace <code>/checkout</code> par ton URL de paiement. Ajoute tes pages CGV / retours / confidentialité (RGPD) si tu vends réellement.
+            Mets tes photos ici : <code>images/robe-rouge.png</code>, <code>images/robe-rose.png</code>,
+            <code>images/robe-verte.png</code>, <code>images/robe-noire.png</code>.
           </span>
         </form>
-
       </div>
     </div>
   </section>
 
-  <!-- FAQ (Objections) -->
+  <!-- FAQ -->
   <section id="faq">
     <div class="container">
-      <h2 class="section-title">FAQ (pour être sûre avant de commander).</h2>
-      <p class="section-sub">Tailles, retours, délais : ce sont les points qui font basculer l’achat direct.</p>
+      <h2 class="section-title">FAQ (avant de valider).</h2>
+      <p class="section-sub">Les points qui font vendre : taille, retours, délais, matière.</p>
 
       <details>
         <summary>Comment choisir la bonne taille ?</summary>
-        <p>Ajoute un guide (poitrine / taille / hanches) + un conseil si tu es entre deux tailles (souvent prendre au-dessus selon la coupe).</p>
+        <p>Ajoute un guide (poitrine / taille / hanches) + conseil si entre deux tailles.</p>
       </details>
-
       <details>
         <summary>Et si la robe ne convient pas ?</summary>
-        <p>Indique ta politique : délai, état du produit, procédure de retour, remboursement/échange.</p>
+        <p>Indique ta politique : délai, procédure, remboursement/échange.</p>
       </details>
-
       <details>
-        <summary>Quels sont les délais de livraison en France ?</summary>
-        <p>Affiche une promesse claire + suivi colis. Très important pour une robe de soirée.</p>
+        <summary>Délais de livraison en France ?</summary>
+        <p>Promesse claire + suivi colis (important pour une robe de soirée).</p>
       </details>
-
       <details>
-        <summary>La matière est-elle épaisse / transparente ?</summary>
-        <p>Ajoute 2–3 infos produit (doublure, tissu, entretien). Ça rassure et réduit les retours.</p>
+        <summary>La matière est-elle doublée ?</summary>
+        <p>2–3 infos produit (doublure, tissu, entretien) = plus de confiance.</p>
       </details>
 
       <div style="margin-top:18px;">
@@ -876,7 +822,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-grid">
