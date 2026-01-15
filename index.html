@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NadiShop – Robes de soirée (Paris)</title>
+  <meta name="description" content="NadiShop : robes de soirée élégantes. La robe qui te fait entendre : ‘tu es magnifique’. Achat direct, livraison France, paiement sécurisé." />
+
+  <style>
+    /* =========================
+       NadiShop – Design blanc + luxe minimal
+       ========================= */
+    :root{
+      --bg:#ffffff;
+      --bg-soft:#f7f8fb;
+      --text:#121218;
+      --muted:#5b5f6a;
+      --line:#e7e8ee;
+
+      --accent:#b08d57;     /* doré doux */
+      --accent2:#111114;    /* noir profond */
+      --chip:#f2efe9;
+
+      --shadow: 0 12px 30px rgba(12, 12, 18, .08);
+      --shadow-soft: 0 10px 20px rgba(12, 12, 18, .06);
+
+      --r:18px;
+      --r-lg:28px;
+
+      --container:1120px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.45;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    /* =========================
+       Topbar
+       ========================= */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 0;
+    }
+
+    /* Brand + Logo */
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:950; letter-spacing:.2px;
+    }
+    .brand-name{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+    }
+    .brand-name strong{
+      font-size:14px;
+      letter-spacing:.4px;
+    }
+    .brand-name span{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+      margin-top:2px;
+    }
+    .logo{
+      width:40px; height:40px;
+      border-radius:14px;
+      box-shadow:var(--shadow-soft);
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#fff;
+      display:grid;
+      place-items:center;
+    }
+    .logo svg{width:32px; height:32px}
+
+    .nav{
+      display:flex; gap:18px; align-items:center;
+      color:var(--muted); font-weight:800; font-size:14px;
+    }
+    .nav a:hover{color:var(--text)}
+
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:950;
+      letter-spacing:.2px;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      white-space:nowrap;
+    }
+    .cta-primary{
+      background:var(--accent2);
+      color:#fff;
+      box-shadow:var(--shadow-soft);
+    }
+    .cta-primary:hover{transform:translateY(-1px)}
+    .cta-secondary{
+      background:#fff;
+      border-color:var(--line);
+      color:var(--text);
+    }
+    .cta-secondary:hover{box-shadow:var(--shadow-soft); transform:translateY(-1px)}
+
+    /* =========================
+       Hero (AIDA)
+       ========================= */
+    header.hero{padding:42px 0 28px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--chip);
+      font-weight:900;
+      font-size:13px;
+      width:fit-content;
+      color:#2f2a22;
+    }
+    .kicker-dot{
+      width:8px; height:8px; border-radius:50%;
+      background:var(--accent);
+    }
+
+    h1{
+      margin:12px 0 10px;
+      font-family:var(--serif);
+      font-weight:900;
+      letter-spacing:-.4px;
+      font-size:clamp(34px, 4vw, 54px);
+      line-height:1.02;
+    }
+    .lead{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:16px;
+      max-width:60ch;
+      font-weight:800;
+    }
+
+    .hero-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .trust-row{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:14px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      font-weight:900;
+      font-size:13px;
+      color:#2b2e38;
+    }
+    .pill svg{width:16px; height:16px}
+
+    .hero-card{
+      border:1px solid var(--line);
+      border-radius:var(--r-lg);
+      overflow:hidden;
+      background:#fff;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+    }
+    .hero-image{
+      position:relative;
+      aspect-ratio: 16/12;
+      background:#eee;
+    }
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .hero-overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%);
+    }
+    .hero-caption{
+      position:absolute;
+      left:16px; right:16px; bottom:14px;
+      color:#fff;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+    }
+    .hero-caption strong{display:block; font-size:15px; letter-spacing:.2px}
+    .hero-caption span{font-size:13px; opacity:.9}
+    .price-tag{
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:950;
+      font-size:13px;
+      white-space:nowrap;
+      backdrop-filter: blur(8px);
+    }
+    .hero-foot{
+      padding:14px 16px 16px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .stars{
+      display:flex; align-items:center; gap:6px;
+      font-weight:950;
+      font-size:13px;
+      color:#2b2e38;
+    }
+    .stars small{color:var(--muted); font-weight:900}
+    .stars svg{width:16px; height:16px; fill:#f5c451}
+
+    /* =========================
+       Sections
+       ========================= */
+    section{padding:46px 0}
+    .section-title{
+      font-family:var(--serif);
+      font-size:clamp(26px, 2.4vw, 38px);
+      margin:0 0 10px;
+      letter-spacing:-.2px;
+      line-height:1.08;
+    }
+    .section-sub{
+      margin:0 0 22px;
+      color:var(--muted);
+      max-width:75ch;
+      font-size:15px;
+      font-weight:850;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:#fff;
+      padding:16px;
+      box-shadow:var(--shadow-soft);
+    }
+    .card h3{margin:8px 0 6px; font-size:16px; letter-spacing:-.1px}
+    .card p{margin:0; color:var(--muted); font-size:14px; font-weight:850}
+    .icon{
+      width:38px; height:38px; border-radius:14px;
+      display:grid; place-items:center;
+      background:var(--bg-soft);
+      border:1px solid var(--line);
+    }
+    .icon svg{width:18px; height:18px}
+
+    /* =========================
+       Produits (achat direct)
+       ========================= */
+    .products{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .product{
+      border:1px solid var(--line);
+      border-radius:var(--r-lg);
+      overflow:hidden;
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+      display:flex;
+      flex-direction:column;
+      min-height: 430px;
+    }
+    .product-media{
+      position:relative;
+      aspect-ratio: 16 / 12;
+      background: #eaeaf0;
+    }
+    .product-media img{
+      width:100%; height:100%;
+      object-fit:cover;
+      filter:saturate(1.03) contrast(1.02);
+    }
+    .badge{
+      position:absolute;
+      top:12px; left:12px;
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:950;
+      font-size:12px;
+      color:#2b2e38;
+      box-shadow:var(--shadow-soft);
+    }
+    .product-body{
+      padding:14px 14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+    .product-title{
+      font-weight:1000;
+      letter-spacing:-.1px;
+      font-size:16px;
+      margin:0;
+    }
+    .product-desc{
+      margin:0;
+      color:var(--muted);
+      font-weight:850;
+      font-size:14px;
+    }
+    .product-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+    .price{
+      font-weight:1100;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .sizes{
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .size{
+      font-size:12px;
+      font-weight:950;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--bg-soft);
+      color:#2b2e38;
+    }
+    .product-actions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .product-actions .cta{flex:1}
+    .product-actions .cta-secondary{flex:.9}
+
+    /* =========================
+       Checkout (conversion)
+       ========================= */
+    .checkout-wrap{
+      background:var(--bg-soft);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .checkout-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:start;
+    }
+    .panel{
+      border:1px solid var(--line);
+      border-radius:var(--r-lg);
+      background:#fff;
+      padding:16px;
+      box-shadow:var(--shadow-soft);
+    }
+    .panel h3{margin:0 0 6px; font-size:16px}
+    .panel p{margin:0; color:var(--muted); font-weight:850; font-size:14px}
+
+    .kv{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .kv .item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+    }
+    .kv .item strong{display:block; font-size:13px}
+    .kv .item span{display:block; color:var(--muted); font-weight:900; font-size:12px; margin-top:2px}
+
+    .form{
+      border:1px solid var(--line);
+      border-radius:var(--r-lg);
+      background:#fff;
+      padding:16px;
+      box-shadow:var(--shadow-soft);
+    }
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:1000;
+      color:#2b2e38;
+      margin:0 0 6px;
+    }
+    input, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--text);
+      font-weight:900;
+      outline:none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    input:focus, select:focus{
+      border-color: rgba(176,141,87,.55);
+      box-shadow: 0 0 0 4px rgba(176,141,87,.18);
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .row.single{grid-template-columns: 1fr}
+    .hint{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:850;
+      margin-top:8px;
+      line-height:1.35;
+    }
+
+    /* =========================
+       FAQ
+       ========================= */
+    details{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px 14px;
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      font-weight:1100;
+      color:#2b2e38;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted); font-weight:850; font-size:14px}
+
+    /* =========================
+       Footer
+       ========================= */
+    footer{
+      border-top:1px solid var(--line);
+      padding:26px 0 34px;
+      color:var(--muted);
+      font-weight:850;
+      font-size:13px;
+    }
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .fineprint{max-width:78ch; line-height:1.35}
+
+    /* =========================
+       Responsive
+       ========================= */
+    @media (max-width: 980px){
+      .nav{display:none}
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .products{grid-template-columns:1fr}
+      .checkout-grid{grid-template-columns:1fr}
+      .hero-image{aspect-ratio:16/10}
+    }
+    @media (max-width: 520px){
+      .row{grid-template-columns:1fr}
+      .kv{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+
+        <!-- LOGO + NOM -->
+        <a class="brand" href="#" aria-label="Accueil NadiShop">
+          <div class="logo" aria-hidden="true">
+            <!-- Logo vectoriel : monogramme N + pétale (féminin / luxe) -->
+            <svg viewBox="0 0 64 64" role="img" aria-label="Logo NadiShop">
+              <defs>
+                <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#b08d57"/>
+                  <stop offset="1" stop-color="#d6c09a"/>
+                </linearGradient>
+              </defs>
+              <path d="M32 6c10.6 0 19.2 8.6 19.2 19.2 0 14.4-13.6 26.6-19.2 32.3-5.6-5.7-19.2-17.9-19.2-32.3C12.8 14.6 21.4 6 32 6Z"
+                    fill="url(#g)"/>
+              <path d="M23 44V20h5.2l12.8 16V20H46v24h-5.2L28.2 28V44H23Z"
+                    fill="#111114"/>
+            </svg>
+          </div>
+          <div class="brand-name">
+            <strong>NadiShop</strong>
+            <span>Paris • Robes de soirée</span>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Navigation">
+          <a href="#produits">Robes</a>
+          <a href="#reassurance">Garanties</a>
+          <a href="#checkout">Commander</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <a class="cta cta-primary" href="#produits" aria-label="Voir les robes">
+          Voir les robes <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO (AIDA : Attention / Intérêt / Désir) -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div>
+          <div class="kicker">
+            <span class="kicker-dot" aria-hidden="true"></span>
+            Paris • Soirée entre copines • Achat direct
+          </div>
+
+          <!-- SLOGAN -->
+          <h1>La robe qui te fait entendre : “tu es magnifique”.</h1>
+
+          <!-- Persona / contexte -->
+          <p class="lead">
+            Pour les femmes de Paris qui veulent une vibe mannequin le temps d’une soirée :
+            coupes flatteuses, élégance premium, et un look qui attire les compliments.
+          </p>
+
+          <div class="hero-actions">
+            <a class="cta cta-primary" href="#produits">Je choisis ma robe →</a>
+            <a class="cta cta-secondary" href="#checkout">Commander maintenant</a>
+          </div>
+
+          <div class="trust-row" role="list" aria-label="Réassurance">
+            <div class="pill" role="listitem">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h11v10H3V7Z" stroke="currentColor" stroke-width="2"/><path d="M14 10h4l3 3v4h-7v-7Z" stroke="currentColor" stroke-width="2"/><path d="M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2"/><path d="M17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2"/></svg>
+              Livraison France
+            </div>
+            <div class="pill" role="listitem">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2"/><path d="M20 4v6h-6" stroke="currentColor" stroke-width="2"/></svg>
+              Retours simples
+            </div>
+            <div class="pill" role="listitem">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="2"/><path d="M6 11h12v10H6V11Z" stroke="currentColor" stroke-width="2"/></svg>
+              Paiement sécurisé
+            </div>
+            <div class="pill" role="listitem">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4" stroke="currentColor" stroke-width="2"/><path d="M7 17l-2-2m5 0-2-2m5 0-2-2m5 0-2-2" stroke="currentColor" stroke-width="2"/></svg>
+              Guide tailles
+            </div>
+          </div>
+        </div>
+
+        <!-- Visuel temporaire (images libres) -->
+        <aside class="hero-card" aria-label="Aperçu NadiShop">
+          <div class="hero-image">
+            <img alt="Robe de soirée élégante (image d’inspiration)" src="https://images.unsplash.com/photo-1520975869011-0a10b2c6e50c?auto=format&fit=crop&w=1600&q=80" />
+            <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="hero-caption">
+              <div>
+                <strong>NadiShop – Look “mannequin”</strong>
+                <span>Soirée • Compliments garantis</span>
+              </div>
+              <div class="price-tag">Prix moyen ~ 200€</div>
+            </div>
+          </div>
+          <div class="hero-foot">
+            <div class="stars">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4,8/5 <small>(avis)</small>
+            </div>
+            <a class="cta cta-secondary" href="#produits">Voir les best-sellers</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- RÉASSURANCE (Intérêt) -->
+  <section id="reassurance">
+    <div class="container">
+      <h2 class="section-title">Une robe qui te met en lumière, sans stress.</h2>
+      <p class="section-sub">
+        On enlève les doutes avant l’achat : délai, retours, paiement et taille.
+        (À remplacer par tes conditions exactes quand tu les as.)
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v10H3V7Z" stroke="currentColor" stroke-width="2"/><path d="M14 10h4l3 3v4h-7v-7Z" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>Livraison France</h3>
+          <p>Expédition + suivi. Une promesse claire rassure (ex : 48–72h).</p>
+        </div>
+
+        <div class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2"/><path d="M20 4v6h-6" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>Retours simples</h3>
+          <p>Échange/remboursement : on garde l’achat “sans risque”.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="2"/><path d="M6 11h12v10H6V11Z" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>Paiement sécurisé</h3>
+          <p>CB / paiement sécurisé. Simple, rapide, fiable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUITS (Désir → Action) -->
+  <section id="produits">
+    <div class="container">
+      <h2 class="section-title">Tes robes “compliments assurés” autour de 200€.</h2>
+      <p class="section-sub">
+        Images temporaires (inspiration). Remplace-les par tes photos produits dès que tu peux.
+      </p>
+
+      <div class="products">
+
+        <article class="product" aria-label="Robe Satin Noir">
+          <div class="product-media">
+            <span class="badge">Best-seller</span>
+            <img alt="Robe de soirée satin noir (inspiration)" src="https://images.unsplash.com/photo-1520975910006-7ee6470d8f8c?auto=format&fit=crop&w=1600&q=80" />
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Robe Satin Noir – “Éclipse”</h3>
+            <p class="product-desc">Silhouette sculptée, effet chic immédiat. Parfaite pour sortir à Paris.</p>
+            <div class="product-meta">
+              <div class="price">199€</div>
+              <div class="sizes">
+                <span class="size">34–46</span>
+                <span class="size">Noir</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <a class="cta cta-primary" href="#checkout">Je la veux →</a>
+              <a class="cta cta-secondary" href="#faq">Détails</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" aria-label="Robe Brillante Argent">
+          <div class="product-media">
+            <span class="badge">Photo-ready</span>
+            <img alt="Robe de soirée brillante (inspiration)" src="https://images.unsplash.com/photo-1520975705182-9d2cbd4f3d64?auto=format&fit=crop&w=1600&q=80" />
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Robe Brillante – “Étoile”</h3>
+            <p class="product-desc">Elle capte la lumière. Tu arrives, et on te remarque.</p>
+            <div class="product-meta">
+              <div class="price">209€</div>
+              <div class="sizes">
+                <span class="size">36–44</span>
+                <span class="size">Argent</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <a class="cta cta-primary" href="#checkout">Je la veux →</a>
+              <a class="cta cta-secondary" href="#faq">Détails</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" aria-label="Robe Chic Minimal">
+          <div class="product-media">
+            <span class="badge">Intemporel</span>
+            <img alt="Robe de soirée chic minimal (inspiration)" src="https://images.unsplash.com/photo-1520975693418-35a8d6fb1e8d?auto=format&fit=crop&w=1600&q=80" />
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Robe Chic – “Ligne Pure”</h3>
+            <p class="product-desc">Minimal, luxe, et ultra mannequin. Une valeur sûre.</p>
+            <div class="product-meta">
+              <div class="price">189€</div>
+              <div class="sizes">
+                <span class="size">34–46</span>
+                <span class="size">Crème</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <a class="cta cta-primary" href="#checkout">Je la veux →</a>
+              <a class="cta cta-secondary" href="#faq">Détails</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT (Action) -->
+  <section id="checkout" class="checkout-wrap">
+    <div class="container">
+      <h2 class="section-title">Finaliser ta commande.</h2>
+      <p class="section-sub">
+        Sans backend, le bouton “Payer” envoie vers <code>/checkout</code>. Branche-le ensuite sur Shopify / WooCommerce / Stripe Checkout.
+      </p>
+
+      <div class="checkout-grid">
+
+        <div class="panel">
+          <h3>Récapitulatif NadiShop</h3>
+          <p>Ta robe, ta taille, ton adresse… et c’est parti pour la soirée.</p>
+
+          <div class="kv">
+            <div class="item"><strong>Livraison</strong><span>France (à préciser)</span></div>
+            <div class="item"><strong>Retours</strong><span>Simple (à préciser)</span></div>
+            <div class="item"><strong>Paiement</strong><span>Sécurisé</span></div>
+            <div class="item"><strong>Prix moyen</strong><span>~ 200€</span></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <a class="cta cta-secondary" href="#faq">FAQ tailles & retours</a>
+          </div>
+        </div>
+
+        <form class="form" action="/checkout" method="post" aria-label="Formulaire commande">
+          <div class="row">
+            <div>
+              <label for="modele">Modèle</label>
+              <select id="modele" name="modele" required>
+                <option value="" disabled selected>Choisir…</option>
+                <option>Éclipse (Satin Noir) – 199€</option>
+                <option>Étoile (Brillant Argent) – 209€</option>
+                <option>Ligne Pure (Chic) – 189€</option>
+              </select>
+            </div>
+            <div>
+              <label for="taille">Taille</label>
+              <select id="taille" name="taille" required>
+                <option value="" disabled selected>Choisir…</option>
+                <option>34</option><option>36</option><option>38</option><option>40</option>
+                <option>42</option><option>44</option><option>46</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="prenom">Prénom</label>
+              <input id="prenom" name="prenom" type="text" placeholder="Prénom" required />
+            </div>
+            <div>
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" type="text" placeholder="Nom" required />
+            </div>
+          </div>
+
+          <div class="row single">
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="vous@email.com" required />
+            </div>
+          </div>
+
+          <div class="row single">
+            <div>
+              <label for="adresse">Adresse de livraison (France)</label>
+              <input id="adresse" name="adresse" type="text" placeholder="N° + rue, code postal, ville" required />
+            </div>
+          </div>
+
+          <button class="cta cta-primary" type="submit" style="width:100%">
+            Payer en toute sécurité →
+          </button>
+
+          <span class="hint">
+            Remplace <code>/checkout</code> par ton URL de paiement. Ajoute tes pages CGV / retours / confidentialité (RGPD) si tu vends réellement.
+          </span>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (Objections) -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">FAQ (pour être sûre avant de commander).</h2>
+      <p class="section-sub">Tailles, retours, délais : ce sont les points qui font basculer l’achat direct.</p>
+
+      <details>
+        <summary>Comment choisir la bonne taille ?</summary>
+        <p>Ajoute un guide (poitrine / taille / hanches) + un conseil si tu es entre deux tailles (souvent prendre au-dessus selon la coupe).</p>
+      </details>
+
+      <details>
+        <summary>Et si la robe ne convient pas ?</summary>
+        <p>Indique ta politique : délai, état du produit, procédure de retour, remboursement/échange.</p>
+      </details>
+
+      <details>
+        <summary>Quels sont les délais de livraison en France ?</summary>
+        <p>Affiche une promesse claire + suivi colis. Très important pour une robe de soirée.</p>
+      </details>
+
+      <details>
+        <summary>La matière est-elle épaisse / transparente ?</summary>
+        <p>Ajoute 2–3 infos produit (doublure, tissu, entretien). Ça rassure et réduit les retours.</p>
+      </details>
+
+      <div style="margin-top:18px;">
+        <a class="cta cta-primary" href="#checkout">Commander →</a>
+        <a class="cta cta-secondary" href="#produits">Revoir les robes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="fineprint">
+          <strong style="color:var(--text)">NadiShop</strong><br/>
+          Mentions légales • Politique de confidentialité • CGV • Politique de retours • Contact
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap">
+          <a class="cta cta-secondary" href="#faq">FAQ</a>
+          <a class="cta cta-primary" href="#checkout">Commander →</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
