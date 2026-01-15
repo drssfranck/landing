@@ -7,87 +7,105 @@
   <meta name="description" content="NadiShop : La robe qui te fait entendre : ‘tu es magnifique’. Achat direct, livraison France, paiement sécurisé." />
 
   <style>
+    /* =========================
+       NadiShop – Design amélioré (luxe / blanc / plus premium)
+       - meilleure hiérarchie typographique
+       - background subtil (radial) + separators doux
+       - CTA plus “haut de gamme”
+       - cartes produits plus élégantes + hover
+       - meilleure lisibilité mobile
+       ========================= */
+
     :root{
       --bg:#ffffff;
-      --bg-soft:#f7f8fb;
-      --text:#121218;
+      --bg-soft:#f7f7fb;
+      --text:#0f1115;
       --muted:#5b5f6a;
-      --line:#e7e8ee;
+      --line:rgba(15,17,21,.10);
 
-      --accent:#b08d57;     /* doré doux */
-      --accent2:#111114;    /* noir profond */
+      --accent:#b08d57;        /* doré doux */
+      --accent2:#111114;       /* noir profond */
       --chip:#f2efe9;
 
-      --shadow: 0 12px 30px rgba(12, 12, 18, .08);
-      --shadow-soft: 0 10px 20px rgba(12, 12, 18, .06);
+      --shadow: 0 18px 60px rgba(15, 17, 21, .10);
+      --shadow-soft: 0 12px 30px rgba(15, 17, 21, .08);
+      --shadow-mini: 0 10px 20px rgba(15, 17, 21, .10);
 
       --r:18px;
       --r-lg:28px;
+
       --container:1120px;
 
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+      --serif: ui-serif, "Times New Roman", Georgia, Times, serif;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family:var(--font);
       color:var(--text);
-      background:var(--bg);
+      background:
+        radial-gradient(1200px 600px at 15% -10%, rgba(176,141,87,.10), transparent 60%),
+        radial-gradient(900px 500px at 95% 5%, rgba(17,17,20,.05), transparent 55%),
+        var(--bg);
       line-height:1.45;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
+    .container{width:min(var(--container), calc(100% - 40px)); margin-inline:auto}
 
-    .container{
-      width:min(var(--container), calc(100% - 40px));
-      margin-inline:auto;
-    }
-
-    /* Topbar */
+    /* =========================
+       Topbar
+       ========================= */
     .topbar{
       position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.86);
-      backdrop-filter: blur(10px);
+      background:rgba(255,255,255,.78);
+      backdrop-filter: blur(14px);
       border-bottom:1px solid var(--line);
     }
     .topbar-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:12px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 0;
     }
-
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      font-weight:950; letter-spacing:.2px;
-    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:950; letter-spacing:.2px}
     .brand-name{display:flex; flex-direction:column; line-height:1.05}
-    .brand-name strong{font-size:14px; letter-spacing:.4px}
+    .brand-name strong{font-size:14px; letter-spacing:.5px}
     .brand-name span{font-size:12px; color:var(--muted); font-weight:800; margin-top:2px}
 
     .logo{
-      width:40px; height:40px;
-      border-radius:14px;
-      box-shadow:var(--shadow-soft);
-      overflow:hidden;
+      width:42px; height:42px;
+      border-radius:16px;
       border:1px solid var(--line);
       background:#fff;
+      box-shadow: var(--shadow-mini);
       display:grid;
       place-items:center;
+      overflow:hidden;
     }
     .logo svg{width:32px; height:32px}
 
-    .nav{
-      display:flex; gap:18px; align-items:center;
-      color:var(--muted); font-weight:800; font-size:14px;
+    .nav{display:flex; gap:18px; align-items:center; color:var(--muted); font-weight:800; font-size:14px}
+    .nav a{position:relative; padding:10px 2px}
+    .nav a::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:6px;
+      height:2px; border-radius:999px;
+      background:linear-gradient(90deg, transparent, rgba(176,141,87,.85), transparent);
+      transform:scaleX(0);
+      transition: transform .25s var(--ease);
     }
     .nav a:hover{color:var(--text)}
+    .nav a:hover::after{transform:scaleX(1)}
 
+    /* =========================
+       Buttons
+       ========================= */
     .cta{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 16px;
@@ -96,20 +114,37 @@
       letter-spacing:.2px;
       border:1px solid transparent;
       cursor:pointer;
-      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
       white-space:nowrap;
     }
-    .cta-primary{background:var(--accent2); color:#fff; box-shadow:var(--shadow-soft)}
-    .cta-primary:hover{transform:translateY(-1px)}
-    .cta-secondary{background:#fff; border-color:var(--line); color:var(--text)}
-    .cta-secondary:hover{box-shadow:var(--shadow-soft); transform:translateY(-1px)}
+    .cta-primary{
+      background: linear-gradient(180deg, #151519, #0c0c0f);
+      color:#fff;
+      box-shadow: 0 14px 30px rgba(15,17,21,.18);
+    }
+    .cta-primary:hover{transform:translateY(-1px); box-shadow: 0 18px 40px rgba(15,17,21,.22)}
+    .cta-secondary{
+      background:#fff;
+      border-color:var(--line);
+      color:var(--text);
+      box-shadow: 0 10px 24px rgba(15,17,21,.06);
+    }
+    .cta-secondary:hover{transform:translateY(-1px); box-shadow: 0 14px 30px rgba(15,17,21,.10)}
+    .cta-ghost{
+      background:transparent;
+      border-color:var(--line);
+      color:var(--text);
+    }
+    .cta-ghost:hover{background:rgba(15,17,21,.04); transform:translateY(-1px)}
 
-    /* Hero */
-    header.hero{padding:42px 0 28px}
+    /* =========================
+       Hero
+       ========================= */
+    header.hero{padding:44px 0 24px}
     .hero-grid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
-      gap:22px;
+      gap:26px;
       align-items:stretch;
     }
 
@@ -117,7 +152,8 @@
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      background:var(--chip);
+      background:rgba(242,239,233,.85);
+      border: 1px solid rgba(176,141,87,.18);
       font-weight:900;
       font-size:13px;
       width:fit-content;
@@ -126,18 +162,18 @@
     .kicker-dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
 
     h1{
-      margin:12px 0 10px;
+      margin:14px 0 10px;
       font-family:var(--serif);
       font-weight:900;
-      letter-spacing:-.4px;
-      font-size:clamp(34px, 4vw, 54px);
+      letter-spacing:-.5px;
+      font-size:clamp(34px, 4vw, 56px);
       line-height:1.02;
     }
     .lead{
       margin:0 0 16px;
       color:var(--muted);
       font-size:16px;
-      max-width:60ch;
+      max-width:62ch;
       font-weight:800;
     }
 
@@ -149,7 +185,8 @@
       padding:9px 12px;
       border:1px solid var(--line);
       border-radius:999px;
-      background:#fff;
+      background:rgba(255,255,255,.92);
+      box-shadow: 0 10px 22px rgba(15,17,21,.05);
       font-weight:900;
       font-size:13px;
       color:#2b2e38;
@@ -165,26 +202,29 @@
       overflow:hidden;
       display:flex;
       flex-direction:column;
-      gap:0;
     }
     .hero-main{
       position:relative;
       aspect-ratio: 16/11;
       background:#eee;
+      overflow:hidden;
     }
     .hero-main img{
       width:100%; height:100%;
       object-fit:cover;
       object-position: 50% 20%;
-      filter:saturate(1.03) contrast(1.02);
-      transform: scale(1.01);
+      filter:saturate(1.04) contrast(1.02);
+      transform: scale(1.02);
     }
     .hero-main::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.62) 100%);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.64) 100%),
+        radial-gradient(600px 300px at 15% 15%, rgba(176,141,87,.25), transparent 60%);
       pointer-events:none;
     }
+
     .hero-caption{
       position:absolute;
       left:16px; right:16px; bottom:14px;
@@ -196,16 +236,16 @@
       z-index:1;
     }
     .hero-caption strong{display:block; font-size:15px; letter-spacing:.2px}
-    .hero-caption span{font-size:13px; opacity:.9}
+    .hero-caption span{font-size:13px; opacity:.92}
     .price-tag{
-      background:rgba(255,255,255,.14);
+      background:rgba(255,255,255,.12);
       border:1px solid rgba(255,255,255,.22);
       padding:8px 10px;
       border-radius:999px;
       font-weight:950;
       font-size:13px;
       white-space:nowrap;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
     .hero-mini{
@@ -220,15 +260,23 @@
       aspect-ratio: 1 / 1;
       background:#eee;
       overflow:hidden;
+      isolation:isolate;
+    }
+    .mini::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.35) 100%);
+      opacity:.75;
+      pointer-events:none;
     }
     .mini img{
       width:100%; height:100%;
       object-fit:cover;
-      object-position: 50% 20%;
+      object-position: 50% 18%;
       filter:saturate(1.02) contrast(1.02);
-      transition: transform .25s ease;
+      transition: transform .28s var(--ease);
     }
-    .mini:hover img{transform: scale(1.04)}
+    .mini:hover img{transform: scale(1.06)}
     .mini-badge{
       position:absolute; left:10px; bottom:10px;
       background:rgba(255,255,255,.92);
@@ -238,49 +286,60 @@
       font-weight:950;
       font-size:12px;
       color:#2b2e38;
-      box-shadow:var(--shadow-soft);
+      box-shadow:var(--shadow-mini);
+      z-index:2;
     }
 
-    /* Sections */
-    section{padding:46px 0}
+    /* =========================
+       Sections
+       ========================= */
+    section{padding:52px 0}
+    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap}
     .section-title{
       font-family:var(--serif);
-      font-size:clamp(26px, 2.4vw, 38px);
+      font-size:clamp(26px, 2.4vw, 40px);
       margin:0 0 10px;
-      letter-spacing:-.2px;
+      letter-spacing:-.25px;
       line-height:1.08;
     }
     .section-sub{
       margin:0 0 22px;
       color:var(--muted);
-      max-width:75ch;
+      max-width:78ch;
       font-size:15px;
       font-weight:850;
     }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(176,141,87,.35), rgba(15,17,21,.08), transparent);
+      margin: 22px 0 0;
     }
+
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
     .card{
       border:1px solid var(--line);
       border-radius:var(--r);
-      background:#fff;
+      background:rgba(255,255,255,.92);
       padding:16px;
       box-shadow:var(--shadow-soft);
+      transition: transform .18s var(--ease), box-shadow .18s var(--ease);
     }
-    .card h3{margin:8px 0 6px; font-size:16px; letter-spacing:-.1px}
+    .card:hover{transform: translateY(-2px); box-shadow: 0 20px 45px rgba(15,17,21,.10)}
+    .card h3{margin:10px 0 6px; font-size:16px; letter-spacing:-.1px}
     .card p{margin:0; color:var(--muted); font-size:14px; font-weight:850}
     .icon{
-      width:38px; height:38px; border-radius:14px;
+      width:42px; height:42px; border-radius:16px;
       display:grid; place-items:center;
-      background:var(--bg-soft);
+      background:linear-gradient(180deg, #fff, var(--bg-soft));
       border:1px solid var(--line);
+      box-shadow: 0 10px 22px rgba(15,17,21,.06);
     }
     .icon svg{width:18px; height:18px}
 
-    /* Produits */
+    /* =========================
+       Produits
+       ========================= */
     .products{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -290,26 +349,38 @@
       border:1px solid var(--line);
       border-radius:var(--r-lg);
       overflow:hidden;
-      background:#fff;
+      background:rgba(255,255,255,.96);
       box-shadow:var(--shadow-soft);
       display:flex;
       flex-direction:column;
-      min-height: 460px;
+      min-height: 500px;
+      transition: transform .18s var(--ease), box-shadow .18s var(--ease);
     }
+    .product:hover{transform: translateY(-2px); box-shadow: 0 22px 55px rgba(15,17,21,.12)}
+
     .product-media{
       position:relative;
-      aspect-ratio: 3 / 4; /* parfait pour robes */
+      aspect-ratio: 3 / 4;
       background:#eaeaf0;
+      overflow:hidden;
     }
     .product-media img{
       width:100%; height:100%;
       object-fit:cover;
-      object-position: 50% 20%;
+      object-position: 50% 18%;
       filter:saturate(1.02) contrast(1.02);
+      transition: transform .28s var(--ease);
     }
+    .product:hover .product-media img{transform: scale(1.03)}
+    .product-media::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,.25) 100%);
+      pointer-events:none;
+    }
+
     .badge{
-      position:absolute;
-      top:12px; left:12px;
+      position:absolute; top:12px; left:12px;
       background:rgba(255,255,255,.92);
       border:1px solid var(--line);
       padding:8px 10px;
@@ -317,8 +388,10 @@
       font-weight:950;
       font-size:12px;
       color:#2b2e38;
-      box-shadow:var(--shadow-soft);
+      box-shadow:var(--shadow-mini);
+      z-index:2;
     }
+
     .product-body{
       padding:14px 14px 16px;
       display:flex;
@@ -326,8 +399,9 @@
       gap:10px;
       flex:1;
     }
-    .product-title{font-weight:1000; letter-spacing:-.1px; font-size:16px; margin:0}
+    .product-title{font-weight:1000; letter-spacing:-.12px; font-size:16px; margin:0}
     .product-desc{margin:0; color:var(--muted); font-weight:850; font-size:14px}
+
     .product-meta{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
       margin-top:4px;
@@ -339,16 +413,21 @@
       padding:6px 9px;
       border-radius:999px;
       border:1px solid var(--line);
-      background:var(--bg-soft);
+      background:linear-gradient(180deg, #fff, var(--bg-soft));
       color:#2b2e38;
     }
+
     .product-actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
     .product-actions .cta{flex:1}
     .product-actions .cta-secondary{flex:.9}
 
-    /* Checkout */
+    /* =========================
+       Checkout
+       ========================= */
     .checkout-wrap{
-      background:var(--bg-soft);
+      background:
+        radial-gradient(1100px 600px at 10% 0%, rgba(176,141,87,.08), transparent 55%),
+        var(--bg-soft);
       border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);
     }
@@ -361,7 +440,7 @@
     .panel{
       border:1px solid var(--line);
       border-radius:var(--r-lg);
-      background:#fff;
+      background:rgba(255,255,255,.96);
       padding:16px;
       box-shadow:var(--shadow-soft);
     }
@@ -378,7 +457,7 @@
       border:1px solid var(--line);
       border-radius:16px;
       padding:12px;
-      background:#fff;
+      background:linear-gradient(180deg, #fff, var(--bg-soft));
     }
     .kv .item strong{display:block; font-size:13px}
     .kv .item span{display:block; color:var(--muted); font-weight:900; font-size:12px; margin-top:2px}
@@ -386,7 +465,7 @@
     .form{
       border:1px solid var(--line);
       border-radius:var(--r-lg);
-      background:#fff;
+      background:rgba(255,255,255,.96);
       padding:16px;
       box-shadow:var(--shadow-soft);
     }
@@ -400,24 +479,36 @@
       color:var(--text);
       font-weight:900;
       outline:none;
-      transition: box-shadow .15s ease, border-color .15s ease;
+      transition: box-shadow .18s var(--ease), border-color .18s var(--ease);
     }
     input:focus, select:focus{
       border-color: rgba(176,141,87,.55);
-      box-shadow: 0 0 0 4px rgba(176,141,87,.18);
+      box-shadow: 0 0 0 5px rgba(176,141,87,.18);
     }
     .row{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:12px}
     .row.single{grid-template-columns: 1fr}
     .hint{display:block; color:var(--muted); font-size:12px; font-weight:850; margin-top:8px; line-height:1.35}
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: .92em;
+      background: rgba(176,141,87,.12);
+      border: 1px solid rgba(176,141,87,.22);
+      padding: 2px 6px;
+      border-radius: 8px;
+    }
 
-    /* FAQ */
+    /* =========================
+       FAQ
+       ========================= */
     details{
       border:1px solid var(--line);
       border-radius:16px;
       padding:12px 14px;
-      background:#fff;
+      background:rgba(255,255,255,.96);
       box-shadow:var(--shadow-soft);
+      transition: transform .18s var(--ease);
     }
+    details:hover{transform: translateY(-1px)}
     details + details{margin-top:10px}
     summary{cursor:pointer; font-weight:1100; color:#2b2e38; list-style:none}
     summary::-webkit-details-marker{display:none}
@@ -426,7 +517,7 @@
     /* Footer */
     footer{
       border-top:1px solid var(--line);
-      padding:26px 0 34px;
+      padding:28px 0 36px;
       color:var(--muted);
       font-weight:850;
       font-size:13px;
@@ -436,6 +527,7 @@
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
+      align-items:flex-start;
     }
     .fineprint{max-width:78ch; line-height:1.35}
 
@@ -448,13 +540,14 @@
       .hero-grid{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
       .checkout-grid{grid-template-columns:1fr}
-      .hero-main{aspect-ratio:16/10}
+      header.hero{padding-top:34px}
     }
     @media (max-width: 520px){
       .row{grid-template-columns:1fr}
       .kv{grid-template-columns:1fr}
       .products{grid-template-columns:1fr}
       .hero-mini{grid-template-columns: 1fr 1fr 1fr}
+      .container{width: calc(100% - 28px)}
     }
   </style>
 </head>
@@ -468,7 +561,6 @@
 
         <a class="brand" href="#" aria-label="Accueil NadiShop">
           <div class="logo" aria-hidden="true">
-            <!-- Logo vectoriel -->
             <svg viewBox="0 0 64 64" role="img" aria-label="Logo NadiShop">
               <defs>
                 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -524,6 +616,7 @@
           <div class="hero-actions">
             <a class="cta cta-primary" href="#produits">Je choisis ma robe →</a>
             <a class="cta cta-secondary" href="#checkout">Commander maintenant</a>
+            <a class="cta cta-ghost" href="#reassurance">Voir les garanties</a>
           </div>
 
           <div class="trust-row" role="list" aria-label="Réassurance">
@@ -532,7 +625,7 @@
               Livraison France
             </div>
             <div class="pill" role="listitem">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2"/><path d="M20 4v6h-6" stroke="currentColor" stroke-width="2"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2"/></svg>
               Retours simples
             </div>
             <div class="pill" role="listitem">
@@ -546,11 +639,9 @@
           </div>
         </div>
 
-        <!-- VISUELS (rangés) -->
+        <!-- VISUELS -->
         <aside class="hero-visual" aria-label="Aperçu collection NadiShop">
-          <!-- Grande image = la plus “impact” : ROUGE -->
           <div class="hero-main">
-            <!-- ⚠️ Mets tes images dans /images et garde ces noms -->
             <img src="images/robe-rouge.png" alt="Robe rouge satinée – NadiShop" loading="eager" />
             <div class="hero-caption">
               <div>
@@ -561,7 +652,6 @@
             </div>
           </div>
 
-          <!-- 3 mini = teintes qui complètent (rose, vert, noir) -->
           <div class="hero-mini" aria-label="Aperçu autres couleurs">
             <a class="mini" href="#produits" aria-label="Voir robe rose">
               <img src="images/robe-rose.png" alt="Robe rose satinée – NadiShop" loading="lazy" />
@@ -585,13 +675,19 @@
   <!-- RÉASSURANCE -->
   <section id="reassurance">
     <div class="container">
-      <h2 class="section-title">Une robe qui te met en lumière, sans stress.</h2>
-      <p class="section-sub">
-        On enlève les doutes avant l’achat : délai, retours, paiement et taille.
-        (À remplacer par tes conditions exactes.)
-      </p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Une robe qui te met en lumière, sans stress.</h2>
+          <p class="section-sub">
+            On enlève les doutes avant l’achat : délai, retours, paiement et taille.
+            (À remplacer par tes conditions exactes.)
+          </p>
+        </div>
+        <a class="cta cta-secondary" href="#checkout">Je commande →</a>
+      </div>
+      <div class="divider"></div>
 
-      <div class="grid-3">
+      <div style="margin-top:22px" class="grid-3">
         <div class="card">
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v10H3V7Z" stroke="currentColor" stroke-width="2"/></svg>
@@ -599,6 +695,7 @@
           <h3>Livraison France</h3>
           <p>Expédition + suivi. Ajoute un délai clair (ex : 48–72h) quand tu l’as.</p>
         </div>
+
         <div class="card">
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2"/></svg>
@@ -606,6 +703,7 @@
           <h3>Retours simples</h3>
           <p>Échange/remboursement : achat plus serein, moins d’hésitation.</p>
         </div>
+
         <div class="card">
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="2"/></svg>
@@ -617,15 +715,21 @@
     </div>
   </section>
 
-  <!-- PRODUITS (tes 4 photos) -->
+  <!-- PRODUITS -->
   <section id="produits">
     <div class="container">
-      <h2 class="section-title">Choisis ta robe. Prépare-toi aux compliments.</h2>
-      <p class="section-sub">
-        Sélection courte : 4 styles, 4 vibes. (Tu peux remplacer les noms/prix plus tard.)
-      </p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Choisis ta robe. Prépare-toi aux compliments.</h2>
+          <p class="section-sub">
+            Sélection courte : 4 styles, 4 vibes. (Tu peux remplacer les noms/prix plus tard.)
+          </p>
+        </div>
+        <a class="cta cta-primary" href="#checkout">Commander →</a>
+      </div>
+      <div class="divider"></div>
 
-      <div class="products">
+      <div style="margin-top:22px" class="products">
 
         <article class="product" aria-label="Robe satin rouge">
           <div class="product-media">
@@ -710,12 +814,17 @@
   <!-- CHECKOUT -->
   <section id="checkout" class="checkout-wrap">
     <div class="container">
-      <h2 class="section-title">Finaliser ta commande.</h2>
-      <p class="section-sub">
-        Le bouton “Payer” pointe vers <code>/checkout</code>. Branche-le ensuite sur ta page de paiement (Shopify / Stripe / etc.).
-      </p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Finaliser ta commande.</h2>
+          <p class="section-sub">
+            Le bouton “Payer” pointe vers <code>/checkout</code>. Branche-le ensuite sur ta page de paiement (Shopify / Stripe / etc.).
+          </p>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-      <div class="checkout-grid">
+      <div style="margin-top:22px" class="checkout-grid">
         <div class="panel">
           <h3>Récapitulatif NadiShop</h3>
           <p>Ta robe, ta taille, ton adresse… et tu es prête.</p>
@@ -784,7 +893,8 @@
           </button>
 
           <span class="hint">
-            Mets tes photos ici : <code>images/robe-rouge.png</code>, <code>images/robe-rose.png</code>,
+            Mets tes photos ici :
+            <code>images/robe-rouge.png</code>, <code>images/robe-rose.png</code>,
             <code>images/robe-verte.png</code>, <code>images/robe-noire.png</code>.
           </span>
         </form>
@@ -795,29 +905,37 @@
   <!-- FAQ -->
   <section id="faq">
     <div class="container">
-      <h2 class="section-title">FAQ (avant de valider).</h2>
-      <p class="section-sub">Les points qui font vendre : taille, retours, délais, matière.</p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">FAQ (avant de valider).</h2>
+          <p class="section-sub">Les points qui font vendre : taille, retours, délais, matière.</p>
+        </div>
+        <a class="cta cta-secondary" href="#checkout">Je commande →</a>
+      </div>
+      <div class="divider"></div>
 
-      <details>
-        <summary>Comment choisir la bonne taille ?</summary>
-        <p>Ajoute un guide (poitrine / taille / hanches) + conseil si entre deux tailles.</p>
-      </details>
-      <details>
-        <summary>Et si la robe ne convient pas ?</summary>
-        <p>Indique ta politique : délai, procédure, remboursement/échange.</p>
-      </details>
-      <details>
-        <summary>Délais de livraison en France ?</summary>
-        <p>Promesse claire + suivi colis (important pour une robe de soirée).</p>
-      </details>
-      <details>
-        <summary>La matière est-elle doublée ?</summary>
-        <p>2–3 infos produit (doublure, tissu, entretien) = plus de confiance.</p>
-      </details>
+      <div style="margin-top:22px">
+        <details>
+          <summary>Comment choisir la bonne taille ?</summary>
+          <p>Ajoute un guide (poitrine / taille / hanches) + conseil si entre deux tailles.</p>
+        </details>
+        <details>
+          <summary>Et si la robe ne convient pas ?</summary>
+          <p>Indique ta politique : délai, procédure, remboursement/échange.</p>
+        </details>
+        <details>
+          <summary>Délais de livraison en France ?</summary>
+          <p>Promesse claire + suivi colis (important pour une robe de soirée).</p>
+        </details>
+        <details>
+          <summary>La matière est-elle doublée ?</summary>
+          <p>2–3 infos produit (doublure, tissu, entretien) = plus de confiance.</p>
+        </details>
 
-      <div style="margin-top:18px;">
-        <a class="cta cta-primary" href="#checkout">Commander →</a>
-        <a class="cta cta-secondary" href="#produits">Revoir les robes</a>
+        <div style="margin-top:18px;">
+          <a class="cta cta-primary" href="#checkout">Commander →</a>
+          <a class="cta cta-secondary" href="#produits">Revoir les robes</a>
+        </div>
       </div>
     </div>
   </section>
